@@ -4,8 +4,8 @@ namespace DotChip8.Chip8
 {
     public class Memory
     {
-        private readonly byte[] _ram;
-        private readonly byte[] _fontset;
+        private byte[] _ram;
+        private byte[] _fontset;
 
         public Memory()
         {
