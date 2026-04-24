@@ -46,11 +46,19 @@ namespace DotChip8.Chip8
             bool collision = false;
             for (int i = 0; i < spriteData.Length; i += 1)
             {
-                for (int j = 7; j >= 0; j += 1)
+                for (int j = 7; j >= 0; j -= 1)
                 {
-                    bool bit = _gfx[x + 7 - j + (y + i) * _height];
-                    _gfx[x + 7 - j + (y + i) * _height] ^= (spriteData[i] & (1 << j)) != 0;
-                    if (bit && !_gfx[x + 7 - j + (y + i) * _height])
+                    int drawX = (x + (7 - j)) % _length;
+                    int drawY = (y + i) % _height;
+
+                    int index = drawX + (drawY * _length);
+
+                    bool pixelState = _gfx[index];
+                    bool spriteBit = (spriteData[i] & (1 << j)) != 0;
+
+                    _gfx[index] ^= spriteBit;
+
+                    if (pixelState && !_gfx[index])
                     {
                         collision = true;
                     }
