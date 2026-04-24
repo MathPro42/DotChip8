@@ -56,7 +56,7 @@ namespace DotChip8.Chip8
         /// </summary>
         public ushort ReadWord(ushort address)
         {
-            return (ushort)(ReadByte(address) << 8 + ReadByte((ushort)(address + 1)));
+            return (ushort)(ReadByte(address) << 8 | ReadByte((ushort)(address + 1)));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace DotChip8.Chip8
         public void LoadRom(byte[] romData)
         {
             ushort address = 0x200;
-            if (address + _ram.Length > romData.Length)
+            if (address + romData.Length > _ram.Length)
             {
                 throw new InvalidOperationException("The given ROM file is too large to fit in memory.");
             }

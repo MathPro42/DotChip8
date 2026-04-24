@@ -12,7 +12,7 @@ namespace DotChip8.Chip8
         /// </summary>
         public static byte GetCategory(ushort opcode)
         {
-            return (byte)(opcode >> 4);
+            return (byte)(opcode >> 12);
         }
 
         /// <summary>
