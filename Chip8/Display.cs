@@ -78,7 +78,7 @@ namespace DotChip8.Chip8
                 string line = "";
                 for (int i = 0; i < _length; i += 1)
                 {
-                    if (_gfx[i + _height * j])
+                    if (_gfx[i + _length * j])
                     {
                         line += '█';
                     }
